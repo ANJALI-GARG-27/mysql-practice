@@ -67,3 +67,37 @@ having max(followers)>300;
 select * from user 
 where followers<500
 limit 3;
+
+--update 
+UPDATE user 
+set followers=600 where age=16;
+select * from user;
+update user 
+set name="Cathey", email="cathey@yahoo.in" where id=3;
+
+update user set followers=500 where name like "%i";
+
+--delete existing rows
+DELETE FROM `user` where following <200;
+
+--alter the schema
+alter Table `user` 
+add COLUMN city VARCHAR(10) DEFAULT "Delhi";
+
+alter table `user` 
+drop column age;
+
+alter table `user`
+rename to instauser;
+
+select * from instauser;
+
+alter TABLE instauser 
+change COLUMN followers subs int default 0;
+
+alter table instauser
+MODIFY subs int DEFAULT 5;
+
+insert into instauser(id,name,email,following,city) 
+VALUES (7,"Barbie","barbs5@gmail.com",490,"Bombay");
+select * from instauser where id=7;
