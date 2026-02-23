@@ -53,3 +53,17 @@ select age, max(followers) from user
 group by age;
 
 select age, avg(following) as Avg_following from user group by age;
+
+--having clause 
+select age, count(id) from user 
+group by age
+having max(followers)<400
+
+select age,min(followers) from user 
+group by age 
+having max(followers)>300;
+
+--limit clause
+select * from user 
+where followers<500
+limit 3;
