@@ -41,3 +41,15 @@ select * from user order by followers ASC;
 select id,name,following from user
 where age>14
 order by following desc;
+
+--group by clause , aggregate functions 
+select count(id) from user ;
+select age , count(id) from user
+group by age;
+
+insert into user values(6,16,"Anjali","anjali27@gmail.com",290,410);
+
+select age, max(followers) from user 
+group by age;
+
+select age, avg(following) as Avg_following from user group by age;
