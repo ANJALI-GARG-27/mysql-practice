@@ -101,3 +101,19 @@ MODIFY subs int DEFAULT 5;
 insert into instauser(id,name,email,following,city) 
 VALUES (7,"Barbie","barbs5@gmail.com",490,"Bombay");
 select * from instauser where id=7;
+
+--foreign key concept
+create table posts (
+     id int PRIMARY KEY , 
+     content VARCHAR(50), 
+     user_id int ,
+     Foreign Key (user_id) REFERENCES instauser(id) );
+insert into posts VALUES(101,"Hello World!",3),
+(102,"Good morning guys!",2);
+
+--truncate and delete
+/* truncate table instauser; cannot truncate because its primary key is referenced by foreign key of posts table*/
+TRUNCATE TABLE posts;
+/* TRUNCATE TABLE instauser; still cannot truncate because posts table exists */
+DROP TABLE posts;
+TRUNCATE TABLE instauser; /* now it can be emptied*/
