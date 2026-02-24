@@ -233,7 +233,7 @@ CREATE VIEW view2 AS
 SELECT c.customer_id,c.name,o.order_id
 FROM customers c INNER JOIN orders o 
 ON c.customer_id=o.customer_id;
-DROP View view1;
+DROP View view2;
 
 --INDEX
 SELECT * from accounts;
