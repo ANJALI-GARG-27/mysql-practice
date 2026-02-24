@@ -1,3 +1,4 @@
+-- Active: 1771577937723@@localhost@3306@mysql
 CREATE DATABASE dance_club;
 drop DATABASE dance_club;
 CREATE DATABASE Instagram;
@@ -117,3 +118,30 @@ TRUNCATE TABLE posts;
 /* TRUNCATE TABLE instauser; still cannot truncate because posts table exists */
 DROP TABLE posts;
 TRUNCATE TABLE instauser; /* now it can be emptied*/
+drop Table instauser;
+
+DROP DATABASE IF EXISTS Instagram;
+--Transaction queries 
+
+CREATE DATABASE prime;
+use prime;
+CREATE table accounts(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(30),
+    balance DECIMAL(10,2)
+);
+insert INTO accounts(name,balance) VALUES("Dan",500.00),("Bob",300.00),("Alina",400.00);
+SELECT * FROM accounts;
+
+START TRANSACTION;
+UPDATE accounts SET balance=balance-50 WHERE id=1;
+UPDATE accounts SET balance=balance+50 WHERE id=2;
+COMMIT;
+ROLLBACK; --only undo uncommitted transactions
+
+START TRANSACTION;
+UPDATE accounts SET balance=balance+1000 WHERE id=1;
+SAVEPOINT after_wallet_topup;
+UPDATE accounts SET balance=balance+10 WHERE id=1;
+ROLLBACK TO after_wallet_topup;
+COMMIT;
