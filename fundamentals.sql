@@ -213,3 +213,46 @@ WHERE c.customer_id IS NULL;
 select * from orders where amount > (
     SELECT AVG(amount) FROM orders
 );
+SELECT name,( 
+    SELECT COUNT(*)
+    FROM orders o WHERE o.customer_id=c.customer_id
+) as order_count 
+FROM customers c;
+
+SELECT summary.customer_id,summary.avg_amount
+FROM ( SELECT customer_id , avg(amount) as avg_amount
+from orders GROUP BY customer_id) as summary;
+
+--VIEWS
+CREATE VIEW view1 AS 
+SELECT customer_id,name FROM customers;
+SELECT * FROM view1;
+
+
+CREATE VIEW view2 AS 
+SELECT c.customer_id,c.name,o.order_id
+FROM customers c INNER JOIN orders o 
+ON c.customer_id=o.customer_id;
+DROP View view1;
+
+--INDEX
+SELECT * from accounts;
+UPDATE accounts SET branch="Mumbai" WHERE id=1;
+UPDATE accounts SET branch="Delhi" WHERE id=2;
+UPDATE accounts SET branch="Bangalore" WHERE id=3;
+INSERT into accounts VALUES(4,"Frank",800.00,"Noida");
+
+CREATE INDEX idx_branch ON accounts(branch);
+SHOW INDEX FROM accounts;
+CREATE INDEX idx2 ON accounts(branch,balance);
+DROP INDEX idx2 ON accounts;
+
+--Procedures
+DELIMITER $$
+CREATE PROCEDURE check_balance(IN acc_id INT )
+BEGIN 
+SELECT balance FROM accounts WHERE id=acc_id;
+END $$
+DELIMITER ;
+CALL check_balance(1);
+DROP PROCEDURE check_balance;
