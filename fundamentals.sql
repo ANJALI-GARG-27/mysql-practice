@@ -188,3 +188,23 @@ UNION
 SELECT * FROM customers c 
 RIGHT JOIN orders o 
 ON c.customer_id=o.customer_id;
+
+--cross join
+SELECT customers.customer_id,order_id,amount FROM customers 
+CROSS JOIN orders;
+--self join
+SELECT * from customers as a 
+join customers as b 
+on a.customer_id=b.customer_id;
+
+--exclusive joins 
+--left exclusive join
+SELECT * FROM customers c 
+LEFT JOIN orders o 
+ON c.customer_id=o.customer_id 
+WHERE o.customer_id IS NULL;
+--right exclusive join
+SELECT * FROM customers c 
+RIGHT JOIN orders o 
+ON c.customer_id=o.customer_id 
+WHERE c.customer_id IS NULL;
