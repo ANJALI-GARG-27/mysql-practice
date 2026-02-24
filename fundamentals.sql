@@ -208,3 +208,8 @@ SELECT * FROM customers c
 RIGHT JOIN orders o 
 ON c.customer_id=o.customer_id 
 WHERE c.customer_id IS NULL;
+
+--sub queries
+select * from orders where amount > (
+    SELECT AVG(amount) FROM orders
+);
