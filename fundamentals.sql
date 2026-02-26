@@ -1,4 +1,4 @@
--- Active: 1771577937723@@localhost@3306@mysql
+-- Active: 1771577937723@@localhost@3306@prime
 CREATE DATABASE dance_club;
 drop DATABASE dance_club;
 CREATE DATABASE Instagram;
