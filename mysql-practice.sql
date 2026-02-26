@@ -1,3 +1,4 @@
+-- Active: 1771577937723@@localhost@3306@college
 CREATE DATABASE IF NOT EXISTS college;
 use college;
 -- create teacher table
@@ -20,3 +21,11 @@ UPDATE teachers SET ctc=1.25 * ctc;
 ALTER TABLE teachers ADD COLUMN city varchar(20) DEFAULT "Gurgaon";
 /* Delete the salary column for teacher table */
 ALTER TABLE teachers DROP COLUMN ctc;
+
+/*create a table to store student info (roll no ,name,city,marks)*/
+CREATE TABLE student(Rollno int PRIMARY KEY, name VARCHAR(30),city VARCHAR(20),marks INT);
+INSERT INTO student VALUES
+(110,"Adam","Delhi",76),
+(108,"Bob","Mumbai",65),
+(124,"Casey","Pune",94),
+(112,"Duke","Pune",80);
