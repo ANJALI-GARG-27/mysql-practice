@@ -29,3 +29,25 @@ INSERT INTO student VALUES
 (108,"Bob","Mumbai",65),
 (124,"Casey","Pune",94),
 (112,"Duke","Pune",80);
+SELECT * FROM student;
+--select all students who scored 75+
+select * FROM student WHERE marks>75;
+
+--find names of all cities where students are from 
+select DISTINCT city FROM student;
+
+--find the maximum marks of students from each city 
+select city, max(marks) from student
+GROUP BY city;
+
+--find the average of the class
+select avg(marks) from student;
+
+/*add a new column grade , assign grade such that : 
+marks>80,grade=O ; 
+marks 70-80,grade=A ; 
+marks 60-70,grade=B    */
+ALTER Table student ADD COLUMN grade VARCHAR(1);
+UPDATE student set grade="O" WHERE marks>80;
+UPDATE student set grade="A" WHERE marks>70 AND marks<=80;
+UPDATE student set grade="B" WHERE marks>60 AND marks<=70;
